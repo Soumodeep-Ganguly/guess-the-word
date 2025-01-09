@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "@langchain/core": "^0.3.27",
     "@langchain/langgraph": "^0.2.39",
     "@langchain/openai": "^0.3.16",

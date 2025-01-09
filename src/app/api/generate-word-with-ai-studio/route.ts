@@ -1,12 +1,8 @@
 import { NextResponse } from 'next/server';
-import { ChatOpenAI } from "@langchain/openai";
-import { HumanMessage } from '@langchain/core/messages';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const openai = new ChatOpenAI({
-    openAIApiKey: process.env.OPENAI_API_KEY, // Add your OpenAI API key here
-    model: "gpt-4o-mini",
-    temperature: 0.7,
-});
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AISTUDIO_API_KEY); // Add your Google AiStudio API key here
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export async function GET() {
     try {
@@ -26,13 +22,12 @@ export async function GET() {
             "Word: nebula, Hint: A massive cloud of gas and dust in outer space."
         `;
 
-        const response = await openai.call([
-            new HumanMessage(template), // Pass the template as the user input
-        ]);
-        const text = response?.text?.trim();
+        const result = await model.generateContent(template);
+        const text = result?.response?.text()
+        console.log(text);
 
         const match = text?.match(/Word:\s*(.+),\s*Hint:\s*(.+)/);
-        if (!match) return NextResponse.json({ error: 'Unexpected response format from OpenAI.' }, { status: 500 });
+        if (!match) return NextResponse.json({ error: 'Unexpected response format from Gemini.' }, { status: 500 });
         
         const word = match[1];
         const hint = match[2];

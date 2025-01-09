@@ -15,6 +15,7 @@ A fun and interactive word guessing game built with Next.js. Players attempt to 
 - Next.js (v15.1.4): A React framework for building the application.
 - Tailwind CSS: A utility-first CSS framework for styling the app.
 - OpenAI API: Used to generate random words and provide hints for the game.
+- Framer Motion: For animations to make the game feel more interactive.
 
 ## Installation
 
@@ -25,18 +26,23 @@ cd guess-the-word`
 
 2. Install the dependencies:
 
-`npm install`
+   `npm install`
 
-3. Set up your OpenAI API key:
+3. Set up your API key accordingly:
 
 - Create a .env.local file at the root of the project.
 - Add the following line, replacing your-openai-api-key with your actual API key:
 
-`OPENAI_API_KEY=your-openai-api-key`
+   `OPENAI_API_KEY=your-openai-api-key` (if you want to use endpoint `/api/generate-word-with-open-ai`)
+   OR 
+   `GOOGLE_AISTUDIO_API_KEY=google-aistudio-api-key` (if you want to use endpoint `/api/generate-word-with-ai-studio`)
+- In `/app/page.tsx` -> `makeNewWord()` -> 
+    -   Use `/api/generate-word-with-open-ai` if your have added `OPENAI_API_KEY` in .env
+    -   Use `/api/generate-word-with-ai-studio` if your have added `GOOGLE_AISTUDIO_API_KEY` in .env
 
 4. Run the development server:
 
-`npm run dev`
+   `npm run dev`
 
 5. Open the game in your browser at http://localhost:3000.
 
