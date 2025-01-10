@@ -149,6 +149,7 @@ const GuessTheWord: React.FC = () => {
             {tries === 0 ? 
             <div className="text-center">
               <h2 className="text-2xl font-bold text-[#e63946] mb-4">Game Over! You lost with {points} points.</h2>
+              <h4 className="text-xl font-bold text-[#e63946] mb-2">Your word was {word}</h4>
               <div className='flex justify-center'>
                 <button
                   className="px-4 py-2 bg-[#e63946] text-[#edf6f9] rounded-lg text-lg flex"
